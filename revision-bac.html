@@ -1,0 +1,1985 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>📚 Révision Bac – Gestion & Management</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #fdf8f3;
+  --white: #ffffff;
+  --rose: #f9c8d4;
+  --rose-deep: #e8a0b0;
+  --blush: #fdeef2;
+  --peach: #fce4d6;
+  --sage: #d4e8d4;
+  --lavender: #e8e0f5;
+  --gold: #f5c842;
+  --text: #2a1f2e;
+  --text-light: #6b5c72;
+  --card: #ffffff;
+  --border: #f0e6ea;
+  --shadow: 0 4px 24px rgba(200,150,170,0.13);
+  --shadow-hover: 0 8px 32px rgba(200,150,170,0.22);
+  --radius: 18px;
+  --radius-sm: 10px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ======= HEADER ======= */
+header {
+  background: linear-gradient(135deg, #fff0f5 0%, #fdf8f3 50%, #f0f5ff 100%);
+  border-bottom: 2px solid var(--border);
+  padding: 18px 20px 12px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 16px rgba(200,150,170,0.1);
+}
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #c97a9a, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.subtitle { font-size: 0.72rem; color: var(--text-light); margin-top: 1px; }
+.bac-badge {
+  background: linear-gradient(135deg, var(--rose), #e8a0b0);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ======= NAV TABS ======= */
+.main-nav {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  scrollbar-width: none;
+}
+.main-nav::-webkit-scrollbar { display: none; }
+.nav-btn {
+  padding: 8px 18px;
+  border: 2px solid transparent;
+  border-radius: 30px;
+  background: var(--white);
+  color: var(--text-light);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+  font-family: 'DM Sans', sans-serif;
+}
+.nav-btn:hover { border-color: var(--rose); color: var(--text); }
+.nav-btn.active {
+  background: linear-gradient(135deg, var(--rose), #e8a0b0);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 3px 12px rgba(230,130,160,0.3);
+}
+
+/* ======= PAGES ======= */
+.page { display: none; padding: 20px 16px 80px; max-width: 800px; margin: 0 auto; }
+.page.active { display: block; }
+
+/* ======= CHAPTER TABS ======= */
+.chapter-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.chap-btn {
+  padding: 6px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  background: var(--white);
+  color: var(--text-light);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'DM Sans', sans-serif;
+}
+.chap-btn:hover { border-color: var(--rose-deep); }
+.chap-btn.active {
+  background: var(--blush);
+  border-color: var(--rose-deep);
+  color: #c97a9a;
+  font-weight: 600;
+}
+
+/* ======= CARDS ======= */
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+  border: 1.5px solid var(--border);
+}
+.card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.card-title .emoji { font-size: 1.1rem; }
+
+/* ======= TABLE ======= */
+.rev-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  margin-top: 8px;
+}
+.rev-table th {
+  background: var(--blush);
+  padding: 8px 10px;
+  text-align: left;
+  font-weight: 600;
+  color: #c97a9a;
+  font-size: 0.75rem;
+}
+.rev-table td {
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.4;
+}
+.rev-table tr:last-child td { border-bottom: none; }
+.rev-table tr:hover td { background: #fff5f8; }
+
+/* ======= FORMULA BOX ======= */
+.formula {
+  background: linear-gradient(135deg, var(--lavender), #f0e8ff);
+  border: 1.5px solid #d4c8f0;
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #5b3d9e;
+  margin: 8px 0;
+  text-align: center;
+}
+.formula-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 8px 0; }
+@media(max-width:500px) { .formula-grid { grid-template-columns: 1fr; } }
+
+/* ======= SCHEMA ======= */
+.schema-box {
+  background: var(--blush);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  margin: 8px 0;
+  text-align: center;
+}
+.schema-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 6px 0;
+}
+.schema-node {
+  background: white;
+  border: 2px solid var(--rose-deep);
+  border-radius: 10px;
+  padding: 7px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text);
+  text-align: center;
+  min-width: 70px;
+}
+.schema-node.highlight {
+  background: linear-gradient(135deg, var(--rose), #e8a0b0);
+  border-color: transparent;
+  color: white;
+}
+.schema-node.green { border-color: #7bc67b; background: #eaf7ea; }
+.schema-node.purple { border-color: #9b7bce; background: var(--lavender); }
+.arrow { font-size: 1rem; color: var(--rose-deep); }
+.schema-label {
+  font-size: 0.7rem;
+  color: var(--text-light);
+  margin: 4px 0 8px;
+  font-style: italic;
+}
+
+/* ======= BADGE ======= */
+.badge {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  margin: 2px 3px;
+}
+.badge-rose { background: var(--blush); color: #c97a9a; }
+.badge-green { background: var(--sage); color: #3a7a3a; }
+.badge-purple { background: var(--lavender); color: #5b3d9e; }
+.badge-peach { background: var(--peach); color: #b05030; }
+.badge-gold { background: #fef9d7; color: #8a6a00; }
+
+/* ======= KEY POINT ======= */
+.key-point {
+  background: linear-gradient(135deg, #fff8e1, #fef3d0);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 10px 14px;
+  margin: 8px 0;
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+.warning {
+  background: linear-gradient(135deg, #fff0f5, #fde8ee);
+  border-left: 4px solid var(--rose-deep);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 10px 14px;
+  margin: 8px 0;
+  font-size: 0.82rem;
+}
+
+/* ======= LIST ======= */
+.rev-list { list-style: none; padding: 0; }
+.rev-list li {
+  padding: 5px 0 5px 18px;
+  position: relative;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  border-bottom: 1px solid var(--border);
+}
+.rev-list li:last-child { border-bottom: none; }
+.rev-list li::before { content: "✦"; position: absolute; left: 0; color: var(--rose-deep); font-size: 0.6rem; top: 7px; }
+
+/* ======= SECTION TITLE ======= */
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin: 24px 0 12px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapter-content { display: none; }
+.chapter-content.active { display: block; }
+
+/* ======= GAME ======= */
+.game-section { display: none; }
+.game-section.active { display: block; }
+.game-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 22px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+  border: 1.5px solid var(--border);
+}
+.game-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.question-text {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 14px;
+  line-height: 1.5;
+  color: var(--text);
+}
+.options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+@media(max-width:400px) { .options-grid { grid-template-columns: 1fr; } }
+.option-btn {
+  padding: 11px 14px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  color: var(--text);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s;
+  font-family: 'DM Sans', sans-serif;
+  line-height: 1.3;
+}
+.option-btn:hover:not(:disabled) { border-color: var(--rose-deep); background: var(--blush); }
+.option-btn.correct { background: var(--sage); border-color: #5a9a5a; color: #2a5a2a; }
+.option-btn.wrong { background: #fde8ee; border-color: #e8a0b0; color: #8a3050; }
+.option-btn:disabled { cursor: default; }
+.game-feedback {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 500;
+  display: none;
+}
+.game-feedback.show { display: block; }
+.game-feedback.good { background: var(--sage); color: #2a5a2a; }
+.game-feedback.bad { background: #fde8ee; color: #8a3050; }
+.game-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, var(--rose), #e8a0b0);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 12px;
+  font-family: 'DM Sans', sans-serif;
+  box-shadow: 0 3px 12px rgba(230,130,160,0.3);
+  transition: all 0.2s;
+}
+.game-btn:hover { transform: translateY(-1px); box-shadow: 0 5px 16px rgba(230,130,160,0.4); }
+.game-btn.secondary {
+  background: white;
+  color: #c97a9a;
+  border: 2px solid var(--rose);
+  box-shadow: none;
+}
+.score-display {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--blush);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #c97a9a;
+  margin-bottom: 14px;
+}
+
+/* ======= FLASHCARD ======= */
+.flashcard {
+  background: linear-gradient(135deg, #fff0f5, #f8f0ff);
+  border: 2px solid var(--rose);
+  border-radius: var(--radius);
+  padding: 28px 22px;
+  text-align: center;
+  cursor: pointer;
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  margin-bottom: 14px;
+  position: relative;
+}
+.flashcard:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+.flashcard-front { font-size: 1rem; font-weight: 600; color: var(--text); }
+.flashcard-back {
+  display: none;
+  font-size: 0.85rem;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+.flashcard.flipped .flashcard-front { display: none; }
+.flashcard.flipped .flashcard-back { display: block; }
+.flashcard.flipped { background: linear-gradient(135deg, var(--sage), #e8f5e8); border-color: #7bc67b; }
+.flip-hint { font-size: 0.7rem; color: var(--text-light); margin-top: 10px; opacity: 0.7; }
+
+/* ======= FILL BLANKS ======= */
+.blank-input {
+  border: 2px solid var(--rose);
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-size: 0.85rem;
+  font-family: 'DM Sans', sans-serif;
+  width: 120px;
+  text-align: center;
+  outline: none;
+  color: var(--text);
+  background: var(--blush);
+}
+.blank-input:focus { border-color: #c97a9a; background: white; }
+.blank-input.correct { border-color: #5a9a5a; background: var(--sage); }
+.blank-input.wrong { border-color: #e8a0b0; background: #fde8ee; }
+
+/* ======= TRUE/FALSE ======= */
+.tf-btns { display: flex; gap: 10px; margin-top: 10px; }
+.tf-btn {
+  flex: 1;
+  padding: 12px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: white;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+}
+.tf-btn:hover:not(:disabled) { border-color: var(--rose-deep); }
+.tf-btn.true-btn:hover:not(:disabled) { background: var(--sage); border-color: #5a9a5a; }
+.tf-btn.false-btn:hover:not(:disabled) { background: #fde8ee; border-color: #e8a0b0; }
+
+/* ======= CALC ======= */
+.calc-input {
+  border: 2px solid var(--rose);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  font-family: 'DM Sans', sans-serif;
+  width: 100%;
+  margin: 6px 0;
+  outline: none;
+}
+.calc-input:focus { border-color: #c97a9a; }
+.calc-result {
+  background: var(--lavender);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  font-size: 0.85rem;
+  margin-top: 10px;
+  display: none;
+}
+.calc-result.show { display: block; }
+
+/* ======= PROGRESS ======= */
+.progress-bar-wrap {
+  background: var(--border);
+  border-radius: 10px;
+  height: 8px;
+  margin: 6px 0 14px;
+  overflow: hidden;
+}
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--rose), #e8a0b0);
+  border-radius: 10px;
+  transition: width 0.4s;
+}
+
+/* ======= HOME ======= */
+.home-hero {
+  background: linear-gradient(135deg, #fff0f5, #f8f4ff, #f0f9ff);
+  border-radius: var(--radius);
+  padding: 28px 22px;
+  text-align: center;
+  margin-bottom: 20px;
+  border: 1.5px solid var(--border);
+}
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.7rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, #c97a9a, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-sub { color: var(--text-light); font-size: 0.85rem; line-height: 1.5; }
+.home-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media(max-width:400px) { .home-grid { grid-template-columns: 1fr; } }
+.home-tile {
+  background: white;
+  border-radius: var(--radius);
+  padding: 18px 16px;
+  text-align: center;
+  cursor: pointer;
+  border: 1.5px solid var(--border);
+  transition: all 0.2s;
+  box-shadow: var(--shadow);
+}
+.home-tile:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+.home-tile .tile-icon { font-size: 2rem; margin-bottom: 8px; }
+.home-tile .tile-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 4px; }
+.home-tile .tile-desc { font-size: 0.75rem; color: var(--text-light); }
+
+/* ======= COUNTDOWN ======= */
+.countdown-box {
+  background: linear-gradient(135deg, var(--rose), #e8a0b0);
+  color: white;
+  border-radius: var(--radius);
+  padding: 16px 22px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.countdown-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 800; }
+.countdown-label { font-size: 0.8rem; opacity: 0.9; margin-top: 2px; }
+
+/* ======= GAME GAME-TYPES NAV ======= */
+.game-type-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.gtype-btn {
+  padding: 6px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  background: white;
+  font-size: 0.73rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+  color: var(--text-light);
+}
+.gtype-btn.active {
+  background: var(--blush);
+  border-color: var(--rose-deep);
+  color: #c97a9a;
+  font-weight: 600;
+}
+
+/* ======= CHRONO ======= */
+.chrono-display {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #c97a9a;
+  text-align: center;
+  margin: 8px 0;
+}
+.chrono-display.urgent { color: #e05070; animation: pulse 0.5s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+
+/* ======= PENDU ======= */
+.pendu-word {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+.pendu-letter {
+  width: 28px;
+  height: 34px;
+  border-bottom: 3px solid #c97a9a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.pendu-alpha {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
+  margin: 12px 0;
+}
+.pendu-key {
+  width: 34px;
+  height: 34px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  background: white;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pendu-key:disabled { background: #f0e6ea; color: #ccc; cursor: default; }
+.pendu-key.bad { background: #fde8ee; color: #e8a0b0; }
+.pendu-errors { text-align: center; font-size: 0.8rem; color: var(--text-light); margin: 6px 0; }
+.pendu-figure { font-size: 2.5rem; text-align: center; margin: 8px 0; min-height: 50px; }
+
+/* ======= BOSS ======= */
+.boss-hp-wrap { margin: 10px 0; }
+.boss-hp-label { font-size: 0.75rem; color: var(--text-light); margin-bottom: 4px; }
+.boss-hp-bar { background: #fde8ee; border-radius: 10px; height: 12px; overflow: hidden; }
+.boss-hp-inner { height: 100%; background: linear-gradient(90deg, #e8a0b0, #c97a9a); border-radius: 10px; transition: width 0.5s; }
+.boss-figure { text-align: center; font-size: 3rem; margin: 10px 0; }
+
+/* ======= EXERCICE ======= */
+.exo-box {
+  background: linear-gradient(135deg, #f8f4ff, #fff0f5);
+  border: 1.5px solid #d4c8f0;
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  margin-bottom: 12px;
+}
+.exo-title { font-weight: 700; font-size: 0.85rem; margin-bottom: 8px; color: #5b3d9e; }
+.exo-data { font-size: 0.82rem; line-height: 1.7; margin-bottom: 10px; }
+.corrige-box {
+  background: var(--sage);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  display: none;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: #2a5a2a;
+}
+.corrige-box.show { display: block; }
+.show-corrige-btn {
+  padding: 7px 16px;
+  border: 1.5px solid #7bc67b;
+  border-radius: 20px;
+  background: white;
+  color: #3a7a3a;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+  margin-top: 8px;
+}
+.show-corrige-btn:hover { background: var(--sage); }
+
+p { font-size: 0.83rem; line-height: 1.6; }
+strong { font-weight: 600; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-top">
+    <div>
+      <div class="logo">✨ BacGest</div>
+      <div class="subtitle">Gestion & Management — 1ère</div>
+    </div>
+    <div class="bac-badge">🎓 Bac J–7</div>
+  </div>
+  <nav class="main-nav">
+    <button class="nav-btn active" onclick="showPage('home')">🏠 Accueil</button>
+    <button class="nav-btn" onclick="showPage('cours')">📖 Cours</button>
+    <button class="nav-btn" onclick="showPage('schemas')">🗺️ Schémas</button>
+    <button class="nav-btn" onclick="showPage('exercices')">✏️ Exercices</button>
+    <button class="nav-btn" onclick="showPage('jeux')">🎮 Jeux</button>
+  </nav>
+</header>
+
+<!-- ======================== HOME ======================== -->
+<div id="page-home" class="page active">
+  <div class="countdown-box">
+    <div class="countdown-num" id="countdown-num">…</div>
+    <div class="countdown-label">jours avant le bac 💪</div>
+  </div>
+  <div class="home-hero">
+    <div class="hero-title">Prête à tout déchirer ?</div>
+    <p class="hero-sub">Tes fiches de gestion & management résumées, schématisées, et transformées en jeux.<br><br>
+    <strong>3 thèmes • 9 chapitres • 100% bac</strong></p>
+  </div>
+  <div class="home-grid">
+    <div class="home-tile" onclick="showPage('cours')">
+      <div class="tile-icon">📖</div>
+      <div class="tile-title">Cours résumés</div>
+      <div class="tile-desc">Tous les chapitres en fiches claires</div>
+    </div>
+    <div class="home-tile" onclick="showPage('schemas')">
+      <div class="tile-icon">🗺️</div>
+      <div class="tile-title">Schémas</div>
+      <div class="tile-desc">Visualise les concepts clés</div>
+    </div>
+    <div class="home-tile" onclick="showPage('exercices')">
+      <div class="tile-icon">✏️</div>
+      <div class="tile-title">Exercices</div>
+      <div class="tile-desc">Calculs & cas pratiques corrigés</div>
+    </div>
+    <div class="home-tile" onclick="showPage('jeux')">
+      <div class="tile-icon">🎮</div>
+      <div class="tile-title">Jeux</div>
+      <div class="tile-desc">QCM, Flashcards, Pendu, Boss…</div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:16px;">
+    <div class="card-title"><span class="emoji">📋</span> Programme couvert</div>
+    <table class="rev-table">
+      <tr><th>Thème</th><th>Chapitres</th></tr>
+      <tr><td><span class="badge badge-rose">Thème 1</span> Valeur & Marketing</td><td>Avantage concurrentiel, Modèles éco, Ressources</td></tr>
+      <tr><td><span class="badge badge-purple">Thème 2</span> Fédérer les acteurs</td><td>Culture d'entreprise, Numérique, Communication</td></tr>
+      <tr><td><span class="badge badge-green">Thème 3</span> Questions de société</td><td>Éthique, Transformations, Écosystèmes</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ======================== COURS ======================== -->
+<div id="page-cours" class="page">
+  <div class="section-title">📖 Fiches de révision</div>
+  <div class="chapter-tabs" id="cours-tabs">
+    <button class="chap-btn active" onclick="showChap('cours','sdgn')">SDGN Bases</button>
+    <button class="chap-btn" onclick="showChap('cours','ch1')">Ch.1 Valeur & Mktg</button>
+    <button class="chap-btn" onclick="showChap('cours','ch2')">Ch.2 Ressources</button>
+    <button class="chap-btn" onclick="showChap('cours','ch3')">Ch.3 Production</button>
+    <button class="chap-btn" onclick="showChap('cours','ch4')">Ch.4 Numérique</button>
+    <button class="chap-btn" onclick="showChap('cours','ch5')">Ch.5 Organisation</button>
+    <button class="chap-btn" onclick="showChap('cours','t2c1')">T2 Ch.1 Acteurs</button>
+    <button class="chap-btn" onclick="showChap('cours','t2c2')">T2 Ch.2 Digital</button>
+    <button class="chap-btn" onclick="showChap('cours','t2c3')">T2 Ch.3 Com.</button>
+    <button class="chap-btn" onclick="showChap('cours','t3c1')">T3 Éthique</button>
+    <button class="chap-btn" onclick="showChap('cours','t3c2')">T3 Société</button>
+    <button class="chap-btn" onclick="showChap('cours','t3c3')">T3 Écosystème</button>
+  </div>
+
+  <!-- SDGN BASES -->
+  <div id="cours-sdgn" class="chapter-content active">
+    <div class="card">
+      <div class="card-title"><span class="emoji">🏢</span> 1. Types d'organisations</div>
+      <table class="rev-table">
+        <tr><th>Entreprises</th><th>Admin. publiques</th><th>Société civile</th></tr>
+        <tr><td>Privées/publiques<br><span class="badge badge-peach">But lucratif</span></td><td>Mairies, hôpitaux…<br><span class="badge badge-green">But non lucratif</span></td><td>ONG, asso, syndicats<br><span class="badge badge-green">But non lucratif</span></td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="emoji">💼</span> 2. Conditions de travail</div>
+      <table class="rev-table">
+        <tr><th>Organisationnelles</th><th>Psychologiques</th><th>Physiques</th><th>Sociales</th></tr>
+        <tr><td>Horaires, rythme</td><td>Stress, bien-être</td><td>Bruit, sécurité</td><td>Relations, climat</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="emoji">💰</span> 3. Prix, coûts et marge</div>
+      <div class="formula">Coût d'achat = Prix d'achat + Livraison</div>
+      <div class="formula">Coût de revient = Coût d'achat + Charges</div>
+      <div class="formula">Prix de vente = Coût de revient + Marge</div>
+      <div class="formula" style="background:linear-gradient(135deg,#eaf7ea,#d4f0d4);color:#2a5a2a;border-color:#7bc67b;">VA = CA − CI</div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="emoji">🎯</span> 4. Valeur perçue</div>
+      <div class="schema-row" style="margin:10px 0;">
+        <div class="schema-node">Valeur d'usage<br><small style="font-weight:400;font-size:0.68rem;">Utilité</small></div>
+        <div class="schema-node highlight">Valeur hédonique<br><small style="font-weight:400;font-size:0.68rem;">Plaisir</small></div>
+        <div class="schema-node purple">Valeur de signe<br><small style="font-weight:400;font-size:0.68rem;">Image de soi</small></div>
+      </div>
+      <p>Indicateurs : <span class="badge badge-rose">Notoriété</span> <span class="badge badge-rose">Image de marque</span> <span class="badge badge-rose">Satisfaction</span> <span class="badge badge-rose">Recommandations</span></p>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="emoji">📊</span> 5. Performance de l'organisation</div>
+      <table class="rev-table">
+        <tr><th>Financière</th><th>Commerciale</th><th>Sociale</th><th>Environnementale</th></tr>
+        <tr><td>Résultats vs moyens financiers</td><td>Part de marché</td><td>Bien-être salariés</td><td>Écoresponsabilité</td></tr>
+      </table>
+      <div class="formula-grid" style="margin-top:10px;">
+        <div class="formula" style="font-size:0.75rem;">Taux de profitabilité<br>= Résultat net / CA × 100</div>
+        <div class="formula" style="font-size:0.75rem;">Taux de rentabilité<br>= Résultat net / Capitaux propres × 100</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="emoji">📈</span> 6. Seuil de rentabilité</div>
+      <div class="formula">MSCV = CA − Charges variables</div>
+      <div class="formula">TMCV = MSCV / CA × 100</div>
+      <div class="formula" style="background:linear-gradient(135deg,#fff8e1,#fef3d0);color:#8a6a00;border-color:#f5c842;">SR = Charges fixes / TMCV</div>
+      <table class="rev-table" style="margin-top:10px;">
+        <tr><th>CA &lt; SR</th><th>CA = SR</th><th>CA &gt; SR</th></tr>
+        <tr><td style="color:#e05070;">❌ Perte</td><td style="color:#8a6a00;">= Résultat nul</td><td style="color:#2a7a2a;">✅ Bénéfice</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- CH1 -->
+  <div id="cours-ch1" class="chapter-content">
+    <div class="card">
+      <div class="card-title"><span class="emoji">🏆</span> 1. Avantage concurrentiel</div>
+      <p>Maîtrise de compétences distinctives qui offrent plus de valeur que la concurrence.</p>
+      <div class="key-point">⚠️ L'avantage concurrentiel est souvent <strong>temporaire</strong> — les concurrents cherchent à l'imiter.</div>
+      <p style="margin-top:8px;font-size:0.8rem;font-weight:600;">Avantage durable → méthode VRIST :</p>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;">
+        <span class="badge badge-rose">Valorisable</span>
+        <span class="badge badge-purple">Rare</span>
+        <span class="badge badge-green">Non-imitable</span>
+        <span class="badge badge-peach">Non-substituable</span>
+        <span class="badge badge-gold">Non-transférable</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="emoji">⛓️</span> 2. Chaîne de valeur (Porter)</div>
+      <p style="font-weight:600;font-size:0.8rem;margin-bottom:6px;">Activités principales :</p>
+      <div class="schema-row">
+        <div class="schema-node">Logistique interne</div>
+        <span class="arrow">→</span>
+        <div class="schema-node">Production</div>
+        <span class="arrow">→</span>
+        <div class="schema-node">Logistique externe</div>
+        <span class="arrow">→</span>
+        <div class="schema-node">Marketing & Ventes</div>
+        <span class="arrow">→</span>
+        <div class="schema-node highlight">Services</div>
+      </div>
+      <p style="font-weight:600;font-size:0.8rem;margin:10px 0 6px;">Activités de soutien :</p>
+      <div class="schema-row">
+        <div class="schema-node purple">Infrastructure</div>
+        <div class="schema-node purple">GRH</div>
+        <div class="schema-node purple">Dév. techno</div>
+        <div class="schema-node purple">Approvisionnement</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="emoji">🎯</span> 3. Marketing mix — les 4P</div>
+      <table class="rev-table">
+        <tr><th>Product (Produit)</th><th>Price (Prix)</th></tr>
+        <tr><td>Marque, gamme, packaging</td><td>Tarifs, remises, conditions paiement</td></tr>
+        <tr><th>Promotion (Com.)</th><th>Place (Distribution)</th></tr>
+        <tr><td>Pub, force de vente, marketing direct</td><td>Canaux, points de vente, stocks</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="emoji">💡</span> 4. Types d'innovation</div>
+      <table class="rev-table">
+        <tr><th>De produit</th><th>De procédé</th><th>Organisationnelle</th></tr>
+        <tr><td>Nouveau produit</td><td>Nouvelle façon de produire</td><td>Organisation du travail</td></tr>
+        <tr><th colspan="2">Incrémentale</th><th>Radicale (rupture)</th></tr>
+        <tr><td colspan="2">Amélioration continue</td><td>Nouvelle catégorie</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="emoji">🧩</span> 5. Business Model Canvas</div>
+      <table class="rev-table">
+        <tr><th>Ressources clés</th><th>Activités clés</th><th>Partenaires clés</th></tr>
+        <tr><td>Machines, brevets, RH</td><td>R&D, marketing, production</td><td>Sous-traitants, transporteurs</td></tr>
+        <tr><th>Proposition de valeur</th><th>Segments clients</th><th>Canaux</th></tr>
+        <tr><td>Besoin satisfait</td><td>Cibles visées</td><td>Accès à l'offre</td></tr>
+        <tr><th>Structure de coûts</th><th colspan="2">Sources de revenus</th></tr>
+        <tr><td>Principales dépenses</td><td colspan="2">Sources de recettes</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="emoji">🌐</span> 6. Modèles économiques récents</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;">
+        <span class="badge badge-rose">Innovation permanente (Apple)</span>
+        <span class="badge badge-purple">Plateformes (Airbnb, Uber)</span>
+        <span class="badge badge-green">Don (ONG)</span>
+        <span class="badge badge-peach">Gratuité (YouTube)</span>
+        <span class="badge badge-gold">Freemium (Deezer)</span>
+        <span class="badge badge-rose">Low cost (Ryanair)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CH2 -->
+  <div id="cours-ch2" class="chapter-content">
+    <div class="card">
+      <div class="card-title"><span class="emoji">🔧</span> 1. Types de ressources</div>
+      <table class="rev-table">
+        <tr><th colspan="3">Tangibles (matérielles)</th></tr>
+        <tr><th>Humaines</th><th>Financières</th><th>Matérielles</th></tr>
+        <tr><td>Salariés, dirigeants</td><td>Argent, capitaux</td><td>Machines, bâtiments</td></tr>
+        <tr><th colspan="3">Intangibles (immatérielles)</th></tr>
+        <tr><th>Technologie</th><th>Infrastructure</th><th>Image</th></tr>
+        <tr><td>Brevets, marques</td><td>Savoir-faire, organisation</td><td>Notoriété, réputation</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="emoji">💳</span> 2. Financement</div>
+      <table class="rev-table">
+        <tr><th>Financement externe</th><th>Financement interne</th></tr>
+        <tr><td>Emprunt bancaire<br>Crédit-bail<br>Crowdfunding<br>Subventions</td><td>Autofinancement (bénéfices)<br>Augmentation de capital</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="emoji">🔄</span> 3. Cycle d'exploitation & BFR</div>
+      <div class="formula">FRNG = Ressources stables − Emplois stables</div>
+      <div class="formula">BFR = Actifs circulants − Dettes circulantes</div>
+      <div class="formula">TN = FRNG − BFR</div>
+      <table class="rev-table" style="margin-top:10px;">
+        <tr><th>FRNG &gt; BFR</th><th>FRNG &lt; BFR</th></tr>
+        <tr><td style="color:#2a7a2a;">✅ TN positive</td><td style="color:#e05070;">❌ TN négative</td></tr>
+      </table>
+      <div class="key-point" style="margin-top:10px;">Solutions si BFR trop élevé : réduire les stocks · faire payer les clients plus vite · payer les fournisseurs plus tard · découvert bancaire</div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="emoji">👥</span> 4. GEPC / GEPP</div>
+      <table class="rev-table">
+        <tr><th>GEPC</th><th>GEPP (depuis 2017)</th></tr>
+        <tr><td>Vision globale, planification</td><td>Centrée sur l'individu et son parcours</td></tr>
+        <tr><td colspan="2">Objectif commun : développer l'employabilité et anticiper les compétences futures</td></tr>
+      </table>
+      <div class="formula" style="margin-top:8px;">Compétence = Savoir + Savoir-faire + Savoir-être</div>
+    </div>
+  </div>
+
+  <!-- CH3 -->
+  <div id="cours-ch3" class="chapter-content">
+    <div class="card">
+      <div class="card-title"><span class="emoji">🏭</span> 1. Modes de production</div>
+      <table class="rev-table">
+        <tr><th>Mode</th><th>Pilotage</th><th>Avantage</th><th>Exemple</th></tr>
+        <tr><td><strong>Unitaire</strong></td><td>Commande</td><td>Qualité + flexibilité</td><td>Haute couture</td></tr>
+        <tr><td><strong>En lot</strong></td><td>Commande</td><td>Flexibilité</td><td>Biens de production</td></tr>
+        <tr><td><strong>En série</strong></td><td>Anticipation</td><td>Économies d'échelle</td><td>Biens de consommation</td></tr>
+        <tr><td><strong>En continu</strong></td><td>Anticipation</td><td>Automatisation</td><td>Boissons</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="emoji">🌊</span> 2. Pilotage de la production</div>
+      <table class="rev-table">
+        <tr><th>Mode</th><th>Stocks</th><th>Principe</th></tr>
+        <tr><td><span class="badge badge-purple">Flux poussé</span></td><td>Importants</td><td>Production sur demande anticipée</td></tr>
+        <tr><td><span class="badge badge-green">Flux tiré</span></td><td>Faibles</td><td>Production sur demande réelle</td></tr>
+        <tr><td><span class="badge badge-rose">Flux tendu</span></td><td>Quasi nuls</td><td>Production à la commande — Zéro stock</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="emoji">⚡</span> 3. Flexibilité</div>
+      <table class="rev-table">
+        <tr><th>Interne</th><th>Externe</th></tr>
+        <tr><td><strong>Quantitative :</strong> heures, effectifs<br><strong>Qualitative :</strong> polyvalence</td><td>Sous-traitance pour pics de demande</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- CH4 -->
+  <div id="cours-ch4" class="chapter-content">
+    <div class="card">
+      <div class="card-title"><span class="emoji">💻</span> 1. Le PGI (ERP)</div>
+      <p>Logiciel qui centralise tous les modules de gestion (achats, RH, comptabilité, stocks…)</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
+        <span class="badge badge-green">Automatisation des tâches</span>
+        <span class="badge badge-purple">Réduction des erreurs</span>
+        <span class="badge badge-gold">Gain de productivité</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="emoji">📡</span> 2. Objets connectés (IoT)</div>
+      <div class="schema-row">
+        <div class="schema-node">Collecte données</div>
+        <span class="arrow">→</span>
+        <div class="schema-node">Envoi Cloud</div>
+        <span class="arrow">→</span>
+        <div class="schema-node">Analyse temps réel</div>
+        <span class="arrow">→</span>
+        <div class="schema-node highlight">Action immédiate</div>
+      </div>
+      <p style="margin-top:8px;">Apports : <span class="badge badge-rose">Automatisation</span> <span class="badge badge-green">Réduction coûts</span> <span class="badge badge-purple">Traçabilité</span></p>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="emoji">🤖</span> 3. Big Data, Cloud & IA</div>
+      <ul class="rev-list">
+        <li><strong>Big Data :</strong> données massives → capital immatériel</li>
+        <li><strong>Cloud :</strong> stockage et accès aux données à distance</li>
+        <li><strong>IA :</strong> analyse plus rapide → meilleures décisions → compétitivité accrue</li>
+        <li><strong>Impact client :</strong> offres personnalisées, fidélisation renforcée</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CH5 -->
+  <div id="cours-ch5" class="chapter-content">
+    <div class="card">
+      <div class="card-title"><span class="emoji">🏗️</span> 1. Organisation rigide (env. stable)</div>
+      <table class="rev-table">
+        <tr><th>Division horizontale</th><th>Avantages</th><th>Inconvénients</th></tr>
+        <tr><td>Chaque salarié = 1 tâche précise</td><td>Spécialisation<br>Forte productivité<br>Coûts bas</td><td>Travail répétitif<br>Démotivation</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="emoji">🔄</span> 2. Toyotisme (env. complexe)</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin:8px 0;">
+        <span class="badge badge-green">Juste-à-temps</span>
+        <span class="badge badge-purple">Autonomisation machines</span>
+        <span class="badge badge-rose">Amélioration continue</span>
+        <span class="badge badge-gold">Cercles de qualité</span>
+      </div>
+      <table class="rev-table">
+        <tr><th>Mécanismes de coordination</th><th>Définition</th></tr>
+        <tr><td>Ajustement mutuel</td><td>Communication informelle entre salariés</td></tr>
+        <tr><td>Supervision directe</td><td>Un supérieur donne les ordres</td></tr>
+        <tr><td>Standardisation des procédés</td><td>Même façon de travailler</td></tr>
+        <tr><td>Standardisation des résultats</td><td>Mêmes objectifs pour tous</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="emoji">🌿</span> 3. Lean Management</div>
+      <p>Adaptation occidentale du toyotisme.</p>
+      <div style="margin-top:8px;">
+        <span class="badge badge-green">Réduction du gaspillage</span>
+        <span class="badge badge-purple">Amélioration continue</span>
+        <span class="badge badge-rose">Participation des salariés</span>
+      </div>
+      <div class="warning" style="margin-top:10px;">⚠️ Risques : stress, fatigue professionnelle, mauvaise image (plans sociaux)</div>
+    </div>
+  </div>
+
+  <!-- T2 CH1 -->
+  <div id="cours-t2c1" class="chapter-content">
+    <div class="card">
+      <div class="card-title"><span class="emoji">🎭</span> 1. Styles de direction</div>
+      <table class="rev-table">
+        <tr><th>Style</th><th>Caractéristiques</th></tr>
+        <tr><td><span class="badge badge-peach">Autoritaire</span></td><td>Décisions centralisées, sanctions, crainte</td></tr>
+        <tr><td><span class="badge badge-gold">Paternaliste</span></td><td>Autorité forte + relation proche, protecteur</td></tr>
+        <tr><td><span class="badge badge-rose">Consultatif</span></td><td>Salariés consultés, confiance, reconnaissance</td></tr>
+        <tr><td><span class="badge badge-green">Participatif</span></td><td>Salariés impliqués, décentralisation, forte motivation</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="emoji">🌟</span> 2. Culture d'entreprise & Leadership</div>
+      <ul class="rev-list">
+        <li><strong>Culture d'entreprise :</strong> ensemble des valeurs, normes et règles partagées par les salariés</li>
+        <li><strong>Leadership :</strong> capacité d'un individu à influencer et mobiliser un groupe vers un objectif</li>
+        <li><strong>Dynamique de groupe :</strong> adaptation des comportements pour maintenir l'équilibre</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="emoji">🔍</span> 3. Analyse SWOT</div>
+      <table class="rev-table">
+        <tr><th>Forces (internes)</th><th>Faiblesses (internes)</th></tr>
+        <tr><td>Bonne image, RH qualifiés, savoir-faire</td><td>Manque notoriété, turn-over, coûts élevés</td></tr>
+        <tr><th>Opportunités (externes)</th><th>Menaces (externes)</th></tr>
+        <tr><td>Nouveaux marchés, innovations, aides État</td><td>Concurrence forte, crise éco, nouvelles lois</td></tr>
+      </table>
+      <div class="key-point" style="margin-top:10px;">Interne = ce que l'entreprise <strong>maîtrise</strong> · Externe = ce qu'elle <strong>subit</strong></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="emoji">🌍</span> 4. Analyse PESTEL + 5 forces</div>
+      <p style="font-size:0.8rem;font-weight:600;margin-bottom:6px;">PESTEL :</p>
+      <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;">
+        <span class="badge badge-rose">Politique</span>
+        <span class="badge badge-gold">Économique</span>
+        <span class="badge badge-purple">Social</span>
+        <span class="badge badge-green">Technologique</span>
+        <span class="badge badge-rose">Écologique</span>
+        <span class="badge badge-peach">Légal</span>
+      </div>
+      <p style="font-size:0.8rem;font-weight:600;margin-bottom:6px;">5 forces de Porter :</p>
+      <ul class="rev-list">
+        <li>Intensité de la concurrence</li>
+        <li>Pouvoir de négociation des clients</li>
+        <li>Pouvoir de négociation des fournisseurs</li>
+        <li>Menace des nouveaux entrants</li>
+        <li>Menace des produits de substitution</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- T2 CH2 -->
+  <div id="cours-t2c2" class="chapter-content">
+    <div class="card">
+      <div class="card-title"><span class="emoji">📱</span> 1. La digitalisation</div>
+      <p>Passage du support physique au support numérique (internet, applications, plateformes).</p>
+      <p style="margin-top:8px;">Permet de mieux connaître le consommateur : <span class="badge badge-rose">besoins</span> <span class="badge badge-purple">motivations</span> <span class="badge badge-green">freins</span> <span class="badge badge-gold">comportements</span></p>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="emoji">🛒</span> 2. Parcours client</div>
+      <div class="schema-row">
+        <div class="schema-node">1. Besoin</div>
+        <span class="arrow">→</span>
+        <div class="schema-node">2. Recherche</div>
+        <span class="arrow">→</span>
+        <div class="schema-node">3. Évaluation</div>
+        <span class="arrow">→</span>
+        <div class="schema-node highlight">4. Achat</div>
+        <span class="arrow">→</span>
+        <div class="schema-node green">5. Post-achat</div>
+      </div>
+      <p style="margin-top:10px;">La digitalisation permet : offres personnalisées · suivi comportements · amélioration satisfaction</p>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="emoji">🏛️</span> 3. E-administration</div>
+      <ul class="rev-list">
+        <li>Démarches simplifiées et dématérialisées</li>
+        <li>Gain de temps pour les usagers</li>
+        <li>Accès en ligne aux services publics</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- T2 CH3 -->
+  <div id="cours-t2c3" class="chapter-content">
+    <div class="card">
+      <div class="card-title"><span class="emoji">📣</span> 1. Stratégies de communication</div>
+      <table class="rev-table">
+        <tr><th>Type</th><th>Cible</th></tr>
+        <tr><td><span class="badge badge-rose">Commerciale</span></td><td>Clients</td></tr>
+        <tr><td><span class="badge badge-purple">Interne</span></td><td>Salariés</td></tr>
+        <tr><td><span class="badge badge-green">Institutionnelle</span></td><td>Citoyens, élus, pouvoirs publics</td></tr>
+        <tr><td><span class="badge badge-gold">Financière</span></td><td>Actionnaires, banques, investisseurs</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="emoji">🔄</span> 2. Communication interne</div>
+      <table class="rev-table">
+        <tr><th>Type</th><th>Sens</th><th>Objectif</th></tr>
+        <tr><td>Descendante</td><td>Dirigeants → Salariés</td><td>Transmettre infos, objectifs, règles</td></tr>
+        <tr><td>Ascendante</td><td>Salariés → Dirigeants</td><td>Remonter infos terrain, idées</td></tr>
+        <tr><td>Transverse</td><td>Entre salariés</td><td>Coopération, coordination</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- T3 CH1 -->
+  <div id="cours-t3c1" class="chapter-content">
+    <div class="card">
+      <div class="card-title"><span class="emoji">⚖️</span> 1. Éthique & Déontologie</div>
+      <table class="rev-table">
+        <tr><th>Éthique</th><th>Déontologie</th></tr>
+        <tr><td>Principes moraux qui guident les comportements</td><td>Règles professionnelles <strong>obligatoires</strong></td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="emoji">🔍</span> 2. Transparence & Discriminations</div>
+      <p>La transparence = rendre visibles et compréhensibles les actions de l'organisation.</p>
+      <div class="key-point" style="margin-top:8px;">Lutte contre les discriminations : âge, sexe, origine, handicap, religion, orientation sexuelle.</div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="emoji">🏙️</span> 3. Organisation comme acteur civique</div>
+      <ul class="rev-list">
+        <li>Respecter les lois</li>
+        <li>Contribuer à l'intérêt général</li>
+        <li>S'engager dans des actions RSE</li>
+      </ul>
+      <div class="key-point" style="margin-top:8px;">Une organisation ne peut pas s'affranchir des questions de société : elle dépend de la confiance du public.</div>
+    </div>
+  </div>
+
+  <!-- T3 CH2 -->
+  <div id="cours-t3c2" class="chapter-content">
+    <div class="card">
+      <div class="card-title"><span class="emoji">🔄</span> 1. Nouveaux modes de travail</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;">
+        <span class="badge badge-rose">Télétravail</span>
+        <span class="badge badge-purple">Travail hybride</span>
+        <span class="badge badge-green">Coworking</span>
+        <span class="badge badge-gold">Horaires flexibles</span>
+        <span class="badge badge-peach">Autonomie accrue</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="emoji">🔐</span> 2. Données personnelles (RGPD)</div>
+      <table class="rev-table">
+        <tr><th>Utilisation</th><th>Protection</th></tr>
+        <tr><td>Mieux connaître clients<br>Personnaliser les offres</td><td>Consentement des utilisateurs<br>Sécurité des données<br>Respect RGPD</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="emoji">⛓️</span> 3. Blockchain</div>
+      <p>Technologie de stockage et transmission d'informations : <strong>sécurisée · transparente · sans intermédiaire</strong></p>
+      <p style="margin-top:8px;">Utilisations : <span class="badge badge-rose">Traçabilité</span> <span class="badge badge-purple">Transactions financières</span> <span class="badge badge-green">Certification</span></p>
+    </div>
+  </div>
+
+  <!-- T3 CH3 -->
+  <div id="cours-t3c3" class="chapter-content">
+    <div class="card">
+      <div class="card-title"><span class="emoji">🌐</span> 1. Écosystème d'affaires</div>
+      <p>Ensemble des acteurs qui interagissent autour d'une organisation : entreprises, clients, fournisseurs, concurrents, partenaires.</p>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="emoji">🏘️</span> 2. Clusters & Écosystèmes d'innovation</div>
+      <table class="rev-table">
+        <tr><th>Cluster</th><th>Écosystème d'innovation</th></tr>
+        <tr><td>Regroupement géographique d'entreprises d'un même secteur</td><td>Entreprises + universités + centres de recherche + institutions</td></tr>
+        <tr><td>Innovation rapide, partage de compétences</td><td>Favoriser la création d'innovation par la coopération</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="emoji">📍</span> 3. Stratégies d'implantation</div>
+      <p>Critères de choix : <span class="badge badge-rose">accès aux marchés</span> <span class="badge badge-green">coûts de production</span> <span class="badge badge-purple">main-d'œuvre disponible</span> <span class="badge badge-gold">infrastructures</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== SCHÉMAS ======================== -->
+<div id="page-schemas" class="page">
+  <div class="section-title">🗺️ Schémas visuels</div>
+
+  <div class="card">
+    <div class="card-title"><span class="emoji">📊</span> Seuil de rentabilité — en un coup d'œil</div>
+    <div class="schema-box">
+      <div class="schema-row">
+        <div class="schema-node" style="min-width:80px;">CA</div>
+        <span class="arrow">−</span>
+        <div class="schema-node" style="min-width:80px;">Charges variables</div>
+        <span class="arrow">=</span>
+        <div class="schema-node highlight">MSCV</div>
+      </div>
+      <div class="schema-label">Marge sur coût variable</div>
+      <div class="schema-row">
+        <div class="schema-node" style="min-width:80px;">MSCV</div>
+        <span class="arrow">÷</span>
+        <div class="schema-node" style="min-width:80px;">CA × 100</div>
+        <span class="arrow">=</span>
+        <div class="schema-node highlight">TMCV %</div>
+      </div>
+      <div class="schema-label">Taux de marge</div>
+      <div class="schema-row">
+        <div class="schema-node" style="min-width:80px;">Charges fixes</div>
+        <span class="arrow">÷</span>
+        <div class="schema-node" style="min-width:80px;">TMCV</div>
+        <span class="arrow">=</span>
+        <div class="schema-node green" style="font-weight:800;">SR ✅</div>
+      </div>
+      <div class="schema-label">Seuil de rentabilité = CA minimum pour ne pas perdre d'argent</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="emoji">💰</span> Chaîne des coûts</div>
+    <div class="schema-box">
+      <div class="schema-row">
+        <div class="schema-node">Prix d'achat<br>+ Livraison</div>
+        <span class="arrow">=</span>
+        <div class="schema-node highlight">Coût d'achat</div>
+        <span class="arrow">+</span>
+        <div class="schema-node">Charges</div>
+        <span class="arrow">=</span>
+        <div class="schema-node highlight">Coût de revient</div>
+        <span class="arrow">+</span>
+        <div class="schema-node">Marge</div>
+        <span class="arrow">=</span>
+        <div class="schema-node green">Prix de vente</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="emoji">🔄</span> Trésorerie — schéma FRNG/BFR/TN</div>
+    <div class="schema-box">
+      <div class="schema-row">
+        <div class="schema-node purple">Ressources stables<br>− Emplois stables</div>
+        <span class="arrow">=</span>
+        <div class="schema-node highlight">FRNG</div>
+      </div>
+      <div class="schema-row" style="margin-top:4px;">
+        <div class="schema-node purple">Actifs circulants<br>− Dettes circulantes</div>
+        <span class="arrow">=</span>
+        <div class="schema-node highlight">BFR</div>
+      </div>
+      <div class="schema-row" style="margin-top:4px;">
+        <div class="schema-node">FRNG</div>
+        <span class="arrow">−</span>
+        <div class="schema-node">BFR</div>
+        <span class="arrow">=</span>
+        <div class="schema-node green">TN</div>
+      </div>
+      <div style="display:flex;gap:16px;justify-content:center;margin-top:12px;">
+        <div style="text-align:center;"><div class="schema-node green">TN +</div><div class="schema-label">FRNG > BFR ✅</div></div>
+        <div style="text-align:center;"><div class="schema-node" style="border-color:#e8a0b0;background:#fde8ee;">TN −</div><div class="schema-label">FRNG < BFR ❌</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="emoji">🌊</span> Les 3 flux de production</div>
+    <div class="schema-box">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+        <div style="text-align:center;">
+          <div class="schema-node purple" style="margin:0 auto 6px;">FLUX POUSSÉ</div>
+          <div style="font-size:0.72rem;color:var(--text-light);">Production anticipée<br>📦 Stocks importants</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="schema-node highlight" style="margin:0 auto 6px;">FLUX TIRÉ</div>
+          <div style="font-size:0.72rem;color:var(--text-light);">Sur demande réelle<br>📦 Stocks faibles</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="schema-node green" style="margin:0 auto 6px;">FLUX TENDU</div>
+          <div style="font-size:0.72rem;color:var(--text-light);">À la commande<br>📦 Zéro stock</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="emoji">🏗️</span> SWOT en schéma</div>
+    <div class="schema-box">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div style="background:#eaf7ea;border-radius:10px;padding:12px;text-align:center;">
+          <div style="font-weight:700;font-size:0.8rem;color:#2a5a2a;margin-bottom:6px;">💪 FORCES</div>
+          <div style="font-size:0.72rem;color:#3a7a3a;">Internes — ce qu'on maîtrise bien</div>
+        </div>
+        <div style="background:#fde8ee;border-radius:10px;padding:12px;text-align:center;">
+          <div style="font-weight:700;font-size:0.8rem;color:#8a3050;margin-bottom:6px;">⚠️ FAIBLESSES</div>
+          <div style="font-size:0.72rem;color:#b05070;">Internes — ce qu'on maîtrise mal</div>
+        </div>
+        <div style="background:#e8f0ff;border-radius:10px;padding:12px;text-align:center;">
+          <div style="font-weight:700;font-size:0.8rem;color:#2a3a8a;margin-bottom:6px;">🌟 OPPORTUNITÉS</div>
+          <div style="font-size:0.72rem;color:#3a5ab0;">Externes — favorables</div>
+        </div>
+        <div style="background:#fff8e1;border-radius:10px;padding:12px;text-align:center;">
+          <div style="font-weight:700;font-size:0.8rem;color:#8a6a00;margin-bottom:6px;">⚡ MENACES</div>
+          <div style="font-size:0.72rem;color:#9a7a10;">Externes — défavorables</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="emoji">🎭</span> Styles de direction — de l'autorité à la participation</div>
+    <div class="schema-box">
+      <div class="schema-row">
+        <div class="schema-node" style="border-color:#e8a0b0;background:#fde8ee;min-width:60px;">Autoritaire</div>
+        <span class="arrow">→</span>
+        <div class="schema-node" style="border-color:#f5c842;background:#fff8e1;min-width:60px;">Paternaliste</div>
+        <span class="arrow">→</span>
+        <div class="schema-node" style="border-color:#c97a9a;background:#fdeef2;min-width:60px;">Consultatif</div>
+        <span class="arrow">→</span>
+        <div class="schema-node green" style="min-width:60px;">Participatif</div>
+      </div>
+      <div class="schema-row" style="font-size:0.7rem;color:var(--text-light);margin-top:4px;">
+        <span>⬅ Centralisation</span>
+        <span style="flex:1;text-align:center;">─────</span>
+        <span>Décentralisation ➡</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="emoji">📣</span> Communication interne — 3 flux</div>
+    <div class="schema-box">
+      <div style="text-align:center;margin-bottom:8px;">
+        <div class="schema-node highlight" style="display:inline-block;">👔 Dirigeants</div>
+      </div>
+      <div class="schema-row">
+        <div style="font-size:1.2rem;color:var(--rose-deep);">⬇</div>
+        <div style="font-size:0.72rem;color:var(--text-light);text-align:center;flex:1;">Descendante<br>Objectifs, règles</div>
+        <div style="font-size:1.2rem;color:#7bc67b;">⬆</div>
+        <div style="font-size:0.72rem;color:var(--text-light);text-align:center;flex:1;">Ascendante<br>Remontée terrain</div>
+      </div>
+      <div style="text-align:center;margin:8px 0;">
+        <div class="schema-node green" style="display:inline-block;">👷 Salariés ↔ Salariés</div>
+      </div>
+      <div style="font-size:0.72rem;color:var(--text-light);text-align:center;">Communication transverse — Coordination horizontale</div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== EXERCICES ======================== -->
+<div id="page-exercices" class="page">
+  <div class="section-title">✏️ Exercices & Corrigés</div>
+
+  <!-- EXO 1 -->
+  <div class="exo-box">
+    <div class="exo-title">📊 Exercice 1 — Calcul du seuil de rentabilité</div>
+    <div class="exo-data">
+      Une entreprise réalise un chiffre d'affaires de <strong>80 000 €</strong>. Ses charges variables sont de <strong>48 000 €</strong> et ses charges fixes s'élèvent à <strong>24 000 €</strong>.<br><br>
+      <strong>Questions :</strong><br>
+      1. Calculez la MSCV.<br>
+      2. Calculez le TMCV.<br>
+      3. Calculez le seuil de rentabilité.<br>
+      4. L'entreprise est-elle rentable ?
+    </div>
+    <button class="show-corrige-btn" onclick="toggleCorrige(this)">👁️ Voir le corrigé</button>
+    <div class="corrige-box">
+      <strong>1. MSCV :</strong> 80 000 − 48 000 = <strong>32 000 €</strong><br>
+      <strong>2. TMCV :</strong> 32 000 / 80 000 × 100 = <strong>40 %</strong><br>
+      <strong>3. SR :</strong> 24 000 / 0,40 = <strong>60 000 €</strong><br>
+      <strong>4.</strong> CA (80 000) > SR (60 000) → ✅ <strong>L'entreprise est rentable</strong>, elle réalise un bénéfice.
+    </div>
+  </div>
+
+  <!-- EXO 2 -->
+  <div class="exo-box">
+    <div class="exo-title">💰 Exercice 2 — Calcul du coût de revient et de la marge</div>
+    <div class="exo-data">
+      Un commerçant achète un produit <strong>200 €</strong>, avec des frais de livraison de <strong>30 €</strong>. Les charges d'exploitation représentent <strong>50 €</strong>. Il souhaite appliquer une marge de <strong>25 %</strong> sur le coût de revient.<br><br>
+      <strong>Questions :</strong><br>
+      1. Calculez le coût d'achat.<br>
+      2. Calculez le coût de revient.<br>
+      3. Calculez le prix de vente.
+    </div>
+    <button class="show-corrige-btn" onclick="toggleCorrige(this)">👁️ Voir le corrigé</button>
+    <div class="corrige-box">
+      <strong>1. Coût d'achat :</strong> 200 + 30 = <strong>230 €</strong><br>
+      <strong>2. Coût de revient :</strong> 230 + 50 = <strong>280 €</strong><br>
+      <strong>3. Marge :</strong> 280 × 25% = 70 €<br>
+      <strong>Prix de vente :</strong> 280 + 70 = <strong>350 €</strong>
+    </div>
+  </div>
+
+  <!-- EXO 3 -->
+  <div class="exo-box">
+    <div class="exo-title">🔄 Exercice 3 — Trésorerie nette (FRNG / BFR)</div>
+    <div class="exo-data">
+      Une entreprise présente les éléments suivants :<br>
+      • Ressources stables : <strong>150 000 €</strong> | Emplois stables : <strong>120 000 €</strong><br>
+      • Actifs circulants : <strong>45 000 €</strong> | Dettes circulantes : <strong>30 000 €</strong><br><br>
+      <strong>Questions :</strong><br>
+      1. Calculez le FRNG.<br>
+      2. Calculez le BFR.<br>
+      3. Calculez la trésorerie nette. La situation est-elle saine ?
+    </div>
+    <button class="show-corrige-btn" onclick="toggleCorrige(this)">👁️ Voir le corrigé</button>
+    <div class="corrige-box">
+      <strong>1. FRNG :</strong> 150 000 − 120 000 = <strong>30 000 €</strong><br>
+      <strong>2. BFR :</strong> 45 000 − 30 000 = <strong>15 000 €</strong><br>
+      <strong>3. TN :</strong> 30 000 − 15 000 = <strong>+15 000 €</strong><br>
+      ✅ TN positive → <strong>situation financière saine</strong>, l'entreprise peut couvrir ses besoins d'exploitation.
+    </div>
+  </div>
+
+  <!-- EXO 4 -->
+  <div class="exo-box">
+    <div class="exo-title">📈 Exercice 4 — Taux de profitabilité</div>
+    <div class="exo-data">
+      Une entreprise réalise un chiffre d'affaires de <strong>500 000 €</strong> et un résultat net de <strong>35 000 €</strong>.<br><br>
+      <strong>Question :</strong> Calculez le taux de profitabilité. Ce résultat est-il satisfaisant ?
+    </div>
+    <button class="show-corrige-btn" onclick="toggleCorrige(this)">👁️ Voir le corrigé</button>
+    <div class="corrige-box">
+      <strong>Taux de profitabilité :</strong> 35 000 / 500 000 × 100 = <strong>7 %</strong><br><br>
+      Pour chaque euro de CA réalisé, l'entreprise génère 7 centimes de bénéfice net. Un taux supérieur à 5% est généralement considéré comme satisfaisant — <strong>la performance financière est correcte</strong>.
+    </div>
+  </div>
+
+  <!-- EXO 5 -->
+  <div class="exo-box">
+    <div class="exo-title">🏭 Exercice 5 — Analyse de cas : productivité</div>
+    <div class="exo-data">
+      Une usine produit <strong>6 000 unités</strong> par semaine avec <strong>20 salariés</strong> travaillant chacun <strong>35 heures</strong>.<br><br>
+      <strong>Questions :</strong><br>
+      1. Calculez la productivité par salarié.<br>
+      2. Calculez la productivité horaire.<br>
+      3. Si l'usine recrute 5 salariés supplémentaires, que devient la productivité par salarié (production inchangée) ?
+    </div>
+    <button class="show-corrige-btn" onclick="toggleCorrige(this)">👁️ Voir le corrigé</button>
+    <div class="corrige-box">
+      <strong>1. Productivité / salarié :</strong> 6 000 / 20 = <strong>300 unités/salarié</strong><br>
+      <strong>2. Productivité horaire :</strong> 6 000 / (20 × 35) = 6 000 / 700 = <strong>≈ 8,57 unités/heure</strong><br>
+      <strong>3. Avec 25 salariés :</strong> 6 000 / 25 = <strong>240 unités/salarié</strong><br>
+      → La productivité par salarié baisse — recruter sans augmenter la production réduit l'efficience.
+    </div>
+  </div>
+
+  <!-- EXO 6 -->
+  <div class="exo-box">
+    <div class="exo-title">🧠 Exercice 6 — Cas de synthèse : analyse SWOT</div>
+    <div class="exo-data">
+      La chaîne de fast-food <strong>BurgerFast</strong> envisage d'ouvrir dans de nouvelles villes. Elle dispose d'une forte notoriété, de processus de production standardisés, mais peine à recruter du personnel. Le marché de la restauration rapide est en croissance, mais un concurrent vient d'ouvrir des restaurants dans les mêmes zones.<br><br>
+      <strong>Question :</strong> Réalisez l'analyse SWOT de BurgerFast.
+    </div>
+    <button class="show-corrige-btn" onclick="toggleCorrige(this)">👁️ Voir le corrigé</button>
+    <div class="corrige-box">
+      <strong>Forces :</strong> Forte notoriété, standardisation des procédés (productivité), expansion possible.<br>
+      <strong>Faiblesses :</strong> Difficultés de recrutement (ressources humaines insuffisantes).<br>
+      <strong>Opportunités :</strong> Marché de la restauration rapide en croissance, nouveaux marchés géographiques.<br>
+      <strong>Menaces :</strong> Nouveau concurrent direct sur les mêmes zones d'implantation.
+    </div>
+  </div>
+</div>
+
+<!-- ======================== JEUX ======================== -->
+<div id="page-jeux" class="page">
+  <div class="section-title">🎮 Zone de jeux</div>
+  <div class="chapter-tabs" id="jeux-tabs">
+    <button class="chap-btn active" onclick="showChap('jeux','qcm')">❓ QCM</button>
+    <button class="chap-btn" onclick="showChap('jeux','vf')">✅ Vrai/Faux</button>
+    <button class="chap-btn" onclick="showChap('jeux','flash')">🃏 Flashcards</button>
+    <button class="chap-btn" onclick="showChap('jeux','trous')">📝 Texte à trous</button>
+    <button class="chap-btn" onclick="showChap('jeux','chrono')">⏱️ Quiz Chrono</button>
+    <button class="chap-btn" onclick="showChap('jeux','pendu')">🎪 Pendu</button>
+    <button class="chap-btn" onclick="showChap('jeux','boss')">👾 Boss Final</button>
+  </div>
+
+  <!-- QCM -->
+  <div id="jeux-qcm" class="game-section active">
+    <div class="game-card">
+      <div class="game-title">❓ QCM — Questions à choix multiples</div>
+      <div class="score-display">🏆 Score : <span id="qcm-score">0</span> / <span id="qcm-total">0</span></div>
+      <div class="progress-bar-wrap"><div class="progress-bar" id="qcm-progress" style="width:0%"></div></div>
+      <div id="qcm-container"></div>
+      <button class="game-btn" id="qcm-next" onclick="loadQCM()" style="display:none;">Question suivante ▶</button>
+      <button class="game-btn secondary" onclick="resetQCM()">🔄 Recommencer</button>
+    </div>
+  </div>
+
+  <!-- VRAI/FAUX -->
+  <div id="jeux-vf" class="game-section">
+    <div class="game-card">
+      <div class="game-title">✅ Vrai / Faux</div>
+      <div class="score-display">🏆 Score : <span id="vf-score">0</span> / <span id="vf-total">0</span></div>
+      <div id="vf-container"></div>
+      <button class="game-btn secondary" onclick="resetVF()">🔄 Recommencer</button>
+    </div>
+  </div>
+
+  <!-- FLASHCARDS -->
+  <div id="jeux-flash" class="game-section">
+    <div class="game-card">
+      <div class="game-title">🃏 Flashcards</div>
+      <p style="font-size:0.8rem;color:var(--text-light);margin-bottom:12px;">Touche la carte pour révéler la réponse !</p>
+      <div class="progress-bar-wrap"><div class="progress-bar" id="flash-progress" style="width:0%"></div></div>
+      <p style="font-size:0.75rem;color:var(--text-light);margin-bottom:8px;"><span id="flash-num">1</span> / <span id="flash-total">12</span></p>
+      <div class="flashcard" id="flash-card" onclick="flipFlash()">
+        <div class="flashcard-front" id="flash-front">Chargement…</div>
+        <div class="flashcard-back" id="flash-back"></div>
+        <div class="flip-hint" id="flash-hint">👆 Appuie pour retourner</div>
+      </div>
+      <div style="display:flex;gap:10px;">
+        <button class="game-btn secondary" onclick="prevFlash()">◀ Précédente</button>
+        <button class="game-btn" onclick="nextFlash()">Suivante ▶</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEXTE À TROUS -->
+  <div id="jeux-trous" class="game-section">
+    <div class="game-card">
+      <div class="game-title">📝 Texte à trous</div>
+      <div id="trous-container"></div>
+      <button class="game-btn" onclick="checkTrous()">✅ Vérifier mes réponses</button>
+      <button class="game-btn secondary" onclick="resetTrous()" style="margin-left:8px;">🔄 Réinitialiser</button>
+      <div id="trous-result" class="game-feedback"></div>
+    </div>
+  </div>
+
+  <!-- QUIZ CHRONO -->
+  <div id="jeux-chrono" class="game-section">
+    <div class="game-card">
+      <div class="game-title">⏱️ Quiz Chrono — 15 secondes par question !</div>
+      <div class="score-display">🏆 Score : <span id="chrono-score">0</span> / <span id="chrono-total">0</span></div>
+      <div class="chrono-display" id="chrono-timer">15</div>
+      <div class="progress-bar-wrap"><div class="progress-bar" id="chrono-bar" style="width:100%;background:linear-gradient(90deg,#f5c842,#e8a040);"></div></div>
+      <div id="chrono-container"></div>
+      <button class="game-btn" onclick="startChrono()">▶ Démarrer</button>
+    </div>
+  </div>
+
+  <!-- PENDU -->
+  <div id="jeux-pendu" class="game-section">
+    <div class="game-card">
+      <div class="game-title">🎪 Le Pendu — Vocabulaire de gestion</div>
+      <div class="pendu-figure" id="pendu-figure">😊</div>
+      <div class="pendu-errors" id="pendu-errors">Erreurs : 0 / 6</div>
+      <div class="pendu-word" id="pendu-word"></div>
+      <div style="font-size:0.75rem;color:var(--text-light);text-align:center;margin-bottom:8px;" id="pendu-hint"></div>
+      <div class="pendu-alpha" id="pendu-alpha"></div>
+      <div id="pendu-status" style="text-align:center;font-weight:700;font-size:0.9rem;margin:8px 0;color:#c97a9a;"></div>
+      <button class="game-btn secondary" onclick="startPendu()">🔄 Nouveau mot</button>
+    </div>
+  </div>
+
+  <!-- BOSS FINAL -->
+  <div id="jeux-boss" class="game-section">
+    <div class="game-card">
+      <div class="game-title">👾 Boss Final — Survis à 10 questions !</div>
+      <div class="boss-figure" id="boss-figure">👹</div>
+      <div class="boss-hp-wrap">
+        <div class="boss-hp-label">❤️ Vie du Boss : <span id="boss-hp-text">100%</span></div>
+        <div class="boss-hp-bar"><div class="boss-hp-inner" id="boss-hp" style="width:100%"></div></div>
+      </div>
+      <div style="margin-top:8px;" class="score-display">⚔️ Tes points : <span id="boss-score">0</span></div>
+      <div id="boss-container" style="margin-top:14px;"></div>
+      <button class="game-btn" onclick="startBoss()">⚔️ Commencer le combat !</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============ NAVIGATION ============
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  const btns = document.querySelectorAll('.nav-btn');
+  const names = ['home','cours','schemas','exercices','jeux'];
+  btns[names.indexOf(name)].classList.add('active');
+}
+function showChap(page, id) {
+  const tabs = document.getElementById(page + '-tabs');
+  tabs.querySelectorAll('.chap-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('#page-' + page + ' .chapter-content, #page-' + page + ' .game-section')
+    .forEach(c => c.classList.remove('active'));
+  const el = document.getElementById(page + '-' + id);
+  if (el) el.classList.add('active');
+}
+
+// ============ COUNTDOWN ============
+function updateCountdown() {
+  const bac = new Date('2026-06-12');
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  const diff = Math.ceil((bac - today) / (1000 * 60 * 60 * 24));
+  document.getElementById('countdown-num').textContent = diff > 0 ? diff : '🎉';
+}
+updateCountdown();
+
+// ============ CORRIGÉ TOGGLE ============
+function toggleCorrige(btn) {
+  const box = btn.nextElementSibling;
+  box.classList.toggle('show');
+  btn.textContent = box.classList.contains('show') ? '🙈 Masquer le corrigé' : '👁️ Voir le corrigé';
+}
+
+// ============ QCM DATA ============
+const qcmData = [
+  { q: "Que signifie l'acronyme MSCV ?", opts: ["Marge Sur Coût Variable","Montant Seuil de Chiffre d'affaires Valorisé","Méthode de Seuil et Calcul des Ventes","Montant de Solde de Caisse Variable"], a: 0, exp: "MSCV = CA − Charges variables" },
+  { q: "La formule du seuil de rentabilité est :", opts: ["MSCV / TMCV","CA − Charges fixes","Charges fixes / TMCV","CA × TMCV"], a: 2, exp: "SR = Charges fixes / TMCV. C'est le CA minimum pour ne pas perdre d'argent." },
+  { q: "Quelle est la définition de la valeur ajoutée ?", opts: ["VA = CA + CI","VA = CA − CI","VA = CA × CI","VA = Prix de vente − Coût d'achat"], a: 1, exp: "VA = CA − Consommations Intermédiaires" },
+  { q: "VRIST permet d'identifier un avantage concurrentiel :", opts: ["Temporaire","Financier","Durable","Commercial"], a: 2, exp: "La méthode VRIST (Valorisable, Rare, non-Imitable, non-Substituable, non-Transférable) caractérise un avantage concurrentiel DURABLE." },
+  { q: "Quel est le style de direction où les salariés sont pleinement impliqués dans les décisions ?", opts: ["Autoritaire","Paternaliste","Consultatif","Participatif"], a: 3, exp: "Le style participatif implique les salariés dans les décisions avec décentralisation et forte motivation." },
+  { q: "Le flux tendu se caractérise par :", opts: ["Des stocks importants","Aucun stock ou quasi nul","Des stocks moyens","Des stocks saisonniers"], a: 1, exp: "Le flux tendu vise le zéro stock — production lancée uniquement à la commande." },
+  { q: "La blockchain est une technologie qui permet :", opts: ["De créer de la publicité","Un stockage sécurisé et transparent sans intermédiaire","D'automatiser les ressources humaines","D'analyser le comportement client"], a: 1, exp: "La blockchain : stockage sécurisé, transparent, sans intermédiaire. Utilisée pour la traçabilité et les transactions." },
+  { q: "GEPP est l'acronyme de :", opts: ["Gestion des Entreprises et des Plans de Profit","Gestion des Emplois et des Parcours Professionnels","Garantie d'Emploi pour les Personnes Précaires","Gestion des Équipes et Prévision du Personnel"], a: 1, exp: "GEPP : Gestion des Emplois et des Parcours Professionnels, introduite en 2017, centrée sur l'individu." },
+  { q: "Quelle est la différence entre efficacité et efficience ?", opts: ["Ce sont des synonymes","Efficacité = atteindre les objectifs ; efficience = avec le moins de ressources possibles","Efficience = atteindre les objectifs ; efficacité = avec moins de ressources","Efficacité concerne les coûts ; efficience concerne les ventes"], a: 1, exp: "Efficacité = atteindre l'objectif. Efficience = atteindre l'objectif avec le minimum de ressources." },
+  { q: "Dans la chaîne de valeur de Porter, la logistique interne est :", opts: ["Une activité de soutien","Une activité principale","Une ressource humaine","Un indicateur de performance"], a: 1, exp: "La logistique interne fait partie des 5 activités principales (ou de base) de la chaîne de valeur." },
+  { q: "Le toyotisme se caractérise notamment par :", opts: ["La division horizontale du travail","Les grands stocks pour éviter les ruptures","Le juste-à-temps et l'amélioration continue","La forte hiérarchie centralisée"], a: 2, exp: "Le toyotisme = juste-à-temps (pas de stocks inutiles), autonomisation, amélioration continue, cercles de qualité." },
+  { q: "Le RGPD concerne :", opts: ["La gestion des ressources humaines","La protection des données personnelles","Le règlement des conflits commerciaux","La gestion de la production"], a: 1, exp: "RGPD = Règlement Général sur la Protection des Données personnelles." },
+  { q: "La valeur hédonique correspond à :", opts: ["L'utilité du bien","L'image que la consommation donne de soi","Le plaisir ressenti lors de l'achat ou de la consommation","Le prix payé par le client"], a: 2, exp: "Valeur hédonique = plaisir ressenti lors de l'achat ou de la consommation." },
+  { q: "Un cluster est :", opts: ["Un type de publicité numérique","Un logiciel de gestion","Un regroupement géographique d'entreprises d'un même secteur","Un indicateur de performance sociale"], a: 2, exp: "Un cluster = grappes d'entreprises d'un même secteur dans une zone géographique. Favorise l'innovation partagée." },
+  { q: "La trésorerie nette (TN) se calcule ainsi :", opts: ["TN = BFR − FRNG","TN = FRNG − BFR","TN = Actifs circulants − Dettes","TN = CA − Charges fixes"], a: 1, exp: "TN = FRNG − BFR. Si TN > 0, la situation financière est saine." }
+];
+let qcmIdx = 0, qcmScore = 0;
+function loadQCM() {
+  const container = document.getElementById('qcm-container');
+  const nextBtn = document.getElementById('qcm-next');
+  nextBtn.style.display = 'none';
+  if (qcmIdx >= qcmData.length) {
+    container.innerHTML = `<div class="game-feedback show good" style="font-size:1rem;text-align:center;">🎉 Terminé ! Score : ${qcmScore} / ${qcmData.length}<br>${qcmScore >= 12 ? '⭐⭐⭐ Excellent !' : qcmScore >= 9 ? '⭐⭐ Bien joué !' : '⭐ Continue à réviser !'}</div>`;
+    return;
+  }
+  const q = qcmData[qcmIdx];
+  document.getElementById('qcm-total').textContent = qcmData.length;
+  document.getElementById('qcm-progress').style.width = (qcmIdx / qcmData.length * 100) + '%';
+  container.innerHTML = `
+    <div class="question-text">${qcmIdx + 1}. ${q.q}</div>
+    <div class="options-grid">
+      ${q.opts.map((o, i) => `<button class="option-btn" onclick="answerQCM(${i})">${o}</button>`).join('')}
+    </div>
+    <div class="game-feedback" id="qcm-feedback"></div>`;
+}
+function answerQCM(idx) {
+  const q = qcmData[qcmIdx];
+  const btns = document.querySelectorAll('#qcm-container .option-btn');
+  btns.forEach(b => b.disabled = true);
+  btns[idx].classList.add(idx === q.a ? 'correct' : 'wrong');
+  btns[q.a].classList.add('correct');
+  const fb = document.getElementById('qcm-feedback');
+  fb.classList.add('show', idx === q.a ? 'good' : 'bad');
+  fb.innerHTML = (idx === q.a ? '✅ Correct ! ' : '❌ Raté. ') + q.exp;
+  if (idx === q.a) { qcmScore++; document.getElementById('qcm-score').textContent = qcmScore; }
+  qcmIdx++;
+  document.getElementById('qcm-next').style.display = 'inline-flex';
+}
+function resetQCM() { qcmIdx = 0; qcmScore = 0; document.getElementById('qcm-score').textContent = 0; loadQCM(); }
+loadQCM();
+
+// ============ VRAI/FAUX ============
+const vfData = [
+  { q: "FRNG = Ressources stables − Emplois stables", a: true, exp: "Oui, c'est la définition exacte du Fonds de Roulement Net Global." },
+  { q: "Le seuil de rentabilité est le CA à partir duquel l'entreprise réalise des bénéfices.", a: true, exp: "Exact. Au-delà du SR, CA > charges totales → bénéfice." },
+  { q: "La valeur de signe correspond au plaisir ressenti lors de l'achat.", a: false, exp: "Non ! La valeur de signe = image que la consommation donne de soi. Le plaisir = valeur hédonique." },
+  { q: "Dans le lean management, l'objectif principal est d'augmenter les stocks.", a: false, exp: "Non ! Le lean management vise à réduire les gaspillages, donc à minimiser les stocks." },
+  { q: "La GEPP est centrée sur l'individu et son parcours professionnel.", a: true, exp: "Correct ! La GEPP (2017) se distingue de la GEPC par son approche centrée sur chaque individu." },
+  { q: "Dans le style participatif, les décisions sont centralisées par le dirigeant.", a: false, exp: "Non ! Le style participatif = décentralisation et implication des salariés dans les décisions." },
+  { q: "La communication transverse circule entre salariés de même niveau.", a: true, exp: "Correct. La communication transverse = entre salariés, pour la coordination horizontale." },
+  { q: "Le flux poussé se caractérise par des stocks quasi inexistants.", a: false, exp: "Non ! Le flux tendu = quasi zéro stock. Le flux poussé = stocks importants (production anticipée)." },
+  { q: "L'avantage concurrentiel est toujours permanent.", a: false, exp: "Non ! L'avantage concurrentiel est souvent temporaire car les concurrents cherchent à l'imiter. La méthode VRIST identifie un avantage durable." },
+  { q: "VA = CA − CI (consommations intermédiaires)", a: true, exp: "Oui, c'est la formule de la valeur ajoutée." }
+];
+let vfIdx = 0, vfScore = 0;
+function loadVF() {
+  const container = document.getElementById('vf-container');
+  if (vfIdx >= vfData.length) {
+    container.innerHTML = `<div class="game-feedback show good" style="font-size:1rem;text-align:center;">🎉 Fini ! ${vfScore} / ${vfData.length}<br>${vfScore >= 8 ? '⭐ Excellent !' : '💪 Révise encore !'}</div>`;
+    return;
+  }
+  document.getElementById('vf-total').textContent = vfData.length;
+  const vf = vfData[vfIdx];
+  container.innerHTML = `
+    <div class="question-text">${vfIdx + 1}. ${vf.q}</div>
+    <div class="tf-btns">
+      <button class="tf-btn true-btn" onclick="answerVF(true)">✅ VRAI</button>
+      <button class="tf-btn false-btn" onclick="answerVF(false)">❌ FAUX</button>
+    </div>
+    <div class="game-feedback" id="vf-feedback"></div>`;
+}
+function answerVF(ans) {
+  const vf = vfData[vfIdx];
+  const ok = ans === vf.a;
+  if (ok) { vfScore++; document.getElementById('vf-score').textContent = vfScore; }
+  const fb = document.getElementById('vf-feedback');
+  fb.classList.add('show', ok ? 'good' : 'bad');
+  fb.innerHTML = (ok ? '✅ Correct ! ' : `❌ C'était ${vf.a ? 'VRAI' : 'FAUX'}. `) + vf.exp;
+  document.querySelectorAll('#vf-container .tf-btn').forEach(b => b.disabled = true);
+  setTimeout(() => { vfIdx++; loadVF(); }, 2500);
+}
+function resetVF() { vfIdx = 0; vfScore = 0; document.getElementById('vf-score').textContent = 0; loadVF(); }
+loadVF();
+
+// ============ FLASHCARDS ============
+const flashData = [
+  { front: "Qu'est-ce que la valeur ajoutée ?", back: "VA = CA − Consommations Intermédiaires\nMesure la richesse créée par l'entreprise." },
+  { front: "Définition du seuil de rentabilité", back: "SR = Charges fixes / TMCV\nCA minimum pour que le résultat soit nul (ni bénéfice, ni perte)." },
+  { front: "Différence efficacité / efficience", back: "Efficacité = atteindre les objectifs\nEfficience = les atteindre avec le moins de ressources possible" },
+  { front: "Qu'est-ce que la MSCV ?", back: "Marge Sur Coût Variable\nMSCV = CA − Charges variables\nMesure ce qui reste pour couvrir les charges fixes." },
+  { front: "Les 4P du marketing mix", back: "Product (Produit) · Price (Prix) · Promotion (Communication) · Place (Distribution)" },
+  { front: "Méthode VRIST — avantage concurrentiel durable", back: "Valorisable · Rare · non-Imitable · non-Substituable · non-Transférable" },
+  { front: "Différence GEPC / GEPP", back: "GEPC = vision globale, planification des RH\nGEPP (2017) = centrée sur l'individu et son parcours professionnel" },
+  { front: "Les 3 valeurs perçues par le consommateur", back: "Valeur d'usage (utilité) · Valeur hédonique (plaisir) · Valeur de signe (image de soi)" },
+  { front: "TN = ? et que signifie TN positive ?", back: "TN = FRNG − BFR\nTN positive → l'entreprise peut couvrir ses besoins d'exploitation, situation financière saine." },
+  { front: "Compétence = ?", back: "Compétence = Savoir + Savoir-faire + Savoir-être\n(valable seulement dans un contexte précis)" },
+  { front: "Qu'est-ce qu'un cluster ?", back: "Regroupement d'entreprises et d'acteurs d'un même secteur dans une zone géographique.\nAvantages : innovation rapide, partage de compétences, coopération." },
+  { front: "Qu'est-ce que le toyotisme ?", back: "Organisation souple basée sur : juste-à-temps, autonomisation des machines, amélioration continue (kaizen), cercles de qualité." }
+];
+let flashIdx = 0;
+document.getElementById('flash-total').textContent = flashData.length;
+function renderFlash() {
+  const f = flashData[flashIdx];
+  const card = document.getElementById('flash-card');
+  card.classList.remove('flipped');
+  document.getElementById('flash-front').textContent = f.front;
+  document.getElementById('flash-back').textContent = f.back;
+  document.getElementById('flash-hint').textContent = '👆 Appuie pour retourner';
+  document.getElementById('flash-num').textContent = flashIdx + 1;
+  document.getElementById('flash-progress').style.width = ((flashIdx + 1) / flashData.length * 100) + '%';
+}
+function flipFlash() {
+  const card = document.getElementById('flash-card');
+  card.classList.toggle('flipped');
+  document.getElementById('flash-hint').textContent = card.classList.contains('flipped') ? '✅ Réponse révélée' : '👆 Appuie pour retourner';
+}
+function nextFlash() { flashIdx = (flashIdx + 1) % flashData.length; renderFlash(); }
+function prevFlash() { flashIdx = (flashIdx - 1 + flashData.length) % flashData.length; renderFlash(); }
+renderFlash();
+
+// ============ TEXTE À TROUS ============
+const trousData = [
+  { text: "La Marge Sur Coût Variable se calcule : MSCV = CA −", answer: "CV", hint: "charges variables" },
+  { text: "Le seuil de rentabilité est égal à : SR = Charges fixes ÷", answer: "TMCV", hint: "taux de marge" },
+  { text: "La trésorerie nette = FRNG −", answer: "BFR", hint: "besoin en fonds de roulement" },
+  { text: "La chaîne de valeur de Porter comprend des activités principales et des activités de", answer: "soutien", hint: "le contraire de principales" },
+  { text: "Le lean management est une adaptation occidentale du", answer: "toyotisme", hint: "système de production japonais" },
+  { text: "La GEPP est centrée sur l'individu et son parcours", answer: "professionnel", hint: "adjectif relatif au métier" },
+];
+function renderTrous() {
+  const c = document.getElementById('trous-container');
+  c.innerHTML = trousData.map((t, i) => `
+    <div style="margin-bottom:12px;font-size:0.85rem;line-height:2;">
+      <span>${t.text} </span>
+      <input class="blank-input" id="trou-${i}" placeholder="${t.hint}" autocomplete="off">
+    </div>`).join('');
+}
+function checkTrous() {
+  let ok = 0;
+  trousData.forEach((t, i) => {
+    const inp = document.getElementById('trou-' + i);
+    const val = inp.value.trim().toLowerCase();
+    const correct = t.answer.toLowerCase();
+    inp.classList.remove('correct', 'wrong');
+    if (val === correct) { inp.classList.add('correct'); ok++; } 
+    else { inp.classList.add('wrong'); inp.placeholder = '✅ ' + t.answer; }
+  });
+  const fb = document.getElementById('trous-result');
+  fb.classList.add('show', ok === trousData.length ? 'good' : 'bad');
+  fb.textContent = `${ok} / ${trousData.length} correct${ok > 1 ? 's' : ''} ! ${ok === trousData.length ? '🎉 Parfait !' : '💪 Regarde les mots en rouge.'}`;
+}
+function resetTrous() {
+  renderTrous();
+  const fb = document.getElementById('trous-result');
+  fb.classList.remove('show', 'good', 'bad');
+}
+renderTrous();
+
+// ============ CHRONO ============
+const chronoData = [
+  { q: "VA = CA − …", opts: ["CF","CI","CV","CA"], a: 1 },
+  { q: "MSCV = CA − …", opts: ["Charges fixes","Charges variables","Coût de revient","BFR"], a: 1 },
+  { q: "SR = Charges fixes ÷ …", opts: ["MSCV","CA","TMCV","BFR"], a: 2 },
+  { q: "TN = FRNG − …", opts: ["BFR","CA","MSCV","SR"], a: 0 },
+  { q: "FRNG = Ressources stables − …", opts: ["BFR","TN","Emplois stables","Actifs circulants"], a: 2 },
+  { q: "Style participatif = salariés …", opts: ["Obéissants","Impliqués dans les décisions","Surveillés","Ignorés"], a: 1 },
+  { q: "Lean management = adaptation du …", opts: ["Fordisme","Taylorisme","Toyotisme","Bureaucratie"], a: 2 },
+  { q: "Compétence = Savoir + Savoir-faire + …", opts: ["Savoir-produire","Savoir-être","Savoir-vendre","Savoir-coûter"], a: 1 },
+];
+let chronoIdx = 0, chronoScore = 0, chronoTimer, chronoTime = 15, chronoRunning = false;
+function startChrono() {
+  chronoIdx = 0; chronoScore = 0; chronoRunning = true;
+  document.getElementById('chrono-score').textContent = 0;
+  document.getElementById('chrono-total').textContent = chronoData.length;
+  loadChronoQ();
+}
+function loadChronoQ() {
+  clearInterval(chronoTimer);
+  if (chronoIdx >= chronoData.length) {
+    document.getElementById('chrono-container').innerHTML = `<div class="game-feedback show good" style="text-align:center;font-size:1rem;">🏁 Score : ${chronoScore} / ${chronoData.length} ${chronoScore >= 6 ? '⚡ Super rapide !' : '💪 Entraîne-toi !'}</div>`;
+    document.getElementById('chrono-timer').textContent = '🏁';
+    return;
+  }
+  const q = chronoData[chronoIdx];
+  document.getElementById('chrono-container').innerHTML = `
+    <div class="question-text">${chronoIdx + 1}. ${q.q}</div>
+    <div class="options-grid">
+      ${q.opts.map((o, i) => `<button class="option-btn" onclick="answerChrono(${i})">${o}</button>`).join('')}
+    </div>
+    <div class="game-feedback" id="chrono-feedback"></div>`;
+  chronoTime = 15;
+  document.getElementById('chrono-timer').className = 'chrono-display';
+  document.getElementById('chrono-bar').style.width = '100%';
+  chronoTimer = setInterval(() => {
+    chronoTime--;
+    document.getElementById('chrono-timer').textContent = chronoTime;
+    document.getElementById('chrono-bar').style.width = (chronoTime / 15 * 100) + '%';
+    if (chronoTime <= 5) document.getElementById('chrono-timer').className = 'chrono-display urgent';
+    if (chronoTime <= 0) { clearInterval(chronoTimer); timeoutChrono(); }
+  }, 1000);
+}
+function answerChrono(idx) {
+  clearInterval(chronoTimer);
+  const q = chronoData[chronoIdx];
+  const btns = document.querySelectorAll('#chrono-container .option-btn');
+  btns.forEach(b => b.disabled = true);
+  btns[idx].classList.add(idx === q.a ? 'correct' : 'wrong');
+  btns[q.a].classList.add('correct');
+  if (idx === q.a) { chronoScore++; document.getElementById('chrono-score').textContent = chronoScore; }
+  chronoIdx++;
+  setTimeout(loadChronoQ, 1200);
+}
+function timeoutChrono() {
+  const q = chronoData[chronoIdx];
+  const btns = document.querySelectorAll('#chrono-container .option-btn');
+  if (btns.length) { btns.forEach(b => b.disabled = true); btns[q.a].classList.add('correct'); }
+  document.getElementById('chrono-timer').textContent = '⏰';
+  chronoIdx++;
+  setTimeout(loadChronoQ, 1200);
+}
+
+// ============ PENDU ============
+const penduWords = [
+  { word: "MSCV", hint: "Marge sur coût …" },
+  { word: "SWOT", hint: "Analyse interne/externe" },
+  { word: "PESTEL", hint: "Analyse de l'environnement macro" },
+  { word: "VRIST", hint: "Avantage concurrentiel durable" },
+  { word: "FRNG", hint: "Fonds de roulement net global" },
+  { word: "GEPP", hint: "Gestion des emplois et parcours" },
+  { word: "LEAN", hint: "Management sans gaspillage" },
+  { word: "CANVAS", hint: "Business model en 9 blocs" },
+  { word: "TOYOTISME", hint: "Juste-à-temps, Kaizen…" },
+  { word: "RGPD", hint: "Protection des données personnelles" },
+];
+const penduFaces = ['😊','😐','😟','😰','😨','😱','💀'];
+let penduWord, penduGuessed, penduErrors;
+function startPendu() {
+  const w = penduWords[Math.floor(Math.random() * penduWords.length)];
+  penduWord = w.word;
+  penduGuessed = new Set();
+  penduErrors = 0;
+  document.getElementById('pendu-status').textContent = '';
+  document.getElementById('pendu-hint').textContent = '💡 ' + w.hint;
+  renderPendu();
+}
+function renderPendu() {
+  document.getElementById('pendu-figure').textContent = penduFaces[penduErrors];
+  document.getElementById('pendu-errors').textContent = `Erreurs : ${penduErrors} / 6`;
+  const wordDiv = document.getElementById('pendu-word');
+  wordDiv.innerHTML = penduWord.split('').map(l => `<div class="pendu-letter">${penduGuessed.has(l) ? l : ''}</div>`).join('');
+  const alpha = document.getElementById('pendu-alpha');
+  alpha.innerHTML = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map(l => {
+    const guessed = penduGuessed.has(l);
+    const bad = guessed && !penduWord.includes(l);
+    return `<button class="pendu-key ${bad ? 'bad' : ''}" onclick="guessPendu('${l}')" ${guessed ? 'disabled' : ''}>${l}</button>`;
+  }).join('');
+}
+function guessPendu(letter) {
+  penduGuessed.add(letter);
+  if (!penduWord.includes(letter)) penduErrors++;
+  renderPendu();
+  if (penduWord.split('').every(l => penduGuessed.has(l))) {
+    document.getElementById('pendu-status').textContent = '🎉 Gagné ! Le mot était : ' + penduWord;
+  } else if (penduErrors >= 6) {
+    document.getElementById('pendu-status').textContent = '💀 Perdu ! Le mot était : ' + penduWord;
+  }
+}
+startPendu();
+
+// ============ BOSS FINAL ============
+const bossData = [
+  { q: "TMCV = MSCV ÷ CA × …", opts: ["10","100","1000","1"], a: 1 },
+  { q: "Quel document présente une 'photo du patrimoine' de l'entreprise ?", opts: ["Compte de résultat","Bilan","Budget de trésorerie","Business plan"], a: 1 },
+  { q: "La communication descendante va de :", opts: ["Salariés vers dirigeants","Salariés vers salariés","Dirigeants vers salariés","Clients vers dirigeants"], a: 2 },
+  { q: "Un avantage concurrentiel est dit durable s'il est :", opts: ["Connu de tous","Non-imitable selon la méthode VRIST","Temporaire","Financé par emprunt"], a: 1 },
+  { q: "Le crowdfunding est une forme de financement :", opts: ["Interne","Externe","Mixte","Public"], a: 1 },
+  { q: "Quelle est la compétence qui inclut le comportement professionnel ?", opts: ["Savoir","Savoir-faire","Savoir-être","Savoir-produire"], a: 2 },
+  { q: "Dans le Business Model Canvas, la 'Proposition de valeur' représente :", opts: ["Les coûts de production","Les canaux de distribution","Le besoin satisfait et les avantages clients","Les ressources humaines"], a: 2 },
+  { q: "L'éthique dans une organisation, c'est :", opts: ["Les règles professionnelles obligatoires","Les principes moraux qui guident les comportements","Les objectifs stratégiques","Les résultats financiers"], a: 1 },
+  { q: "Pour réduire un BFR trop élevé, on peut :", opts: ["Augmenter les stocks","Payer les fournisseurs plus vite","Réduire les stocks et faire payer les clients plus vite","Augmenter les charges fixes"], a: 2 },
+  { q: "Le lean management vise principalement à :", opts: ["Augmenter les stocks de sécurité","Réduire les gaspillages et améliorer en continu","Centraliser les décisions","Réduire le nombre de salariés uniquement"], a: 1 },
+];
+let bossIdx = 0, bossScore = 0, bossHP = 100;
+function startBoss() {
+  bossIdx = 0; bossScore = 0; bossHP = 100;
+  document.getElementById('boss-score').textContent = 0;
+  document.getElementById('boss-hp').style.width = '100%';
+  document.getElementById('boss-hp-text').textContent = '100%';
+  document.getElementById('boss-figure').textContent = '👹';
+  loadBossQ();
+}
+function loadBossQ() {
+  const c = document.getElementById('boss-container');
+  if (bossIdx >= bossData.length) {
+    document.getElementById('boss-figure').textContent = bossHP <= 0 ? '💀' : '👹';
+    c.innerHTML = `<div class="game-feedback show ${bossScore >= 7 ? 'good' : 'bad'}" style="text-align:center;font-size:1rem;">
+      ${bossScore >= 7 ? '🎉 Boss vaincu ! ' : '😅 Boss survivant... '} Score : ${bossScore} / ${bossData.length}<br>
+      ${bossScore === 10 ? '⭐⭐⭐ Parfait !' : bossScore >= 7 ? '⭐⭐ Bien joué !' : '⭐ Révise encore !'}
+    </div>`;
+    return;
+  }
+  const q = bossData[bossIdx];
+  c.innerHTML = `
+    <div class="question-text">⚔️ ${bossIdx + 1}/10 · ${q.q}</div>
+    <div class="options-grid">
+      ${q.opts.map((o, i) => `<button class="option-btn" onclick="answerBoss(${i})">${o}</button>`).join('')}
+    </div>
+    <div class="game-feedback" id="boss-feedback"></div>`;
+}
+function answerBoss(idx) {
+  const q = bossData[bossIdx];
+  const btns = document.querySelectorAll('#boss-container .option-btn');
+  btns.forEach(b => b.disabled = true);
+  const ok = idx === q.a;
+  btns[idx].classList.add(ok ? 'correct' : 'wrong');
+  btns[q.a].classList.add('correct');
+  if (ok) {
+    bossScore++;
+    bossHP -= 10;
+    document.getElementById('boss-score').textContent = bossScore;
+    document.getElementById('boss-hp').style.width = Math.max(0, bossHP) + '%';
+    document.getElementById('boss-hp-text').textContent = Math.max(0, bossHP) + '%';
+    if (bossHP <= 50) document.getElementById('boss-figure').textContent = '😤';
+    if (bossHP <= 20) document.getElementById('boss-figure').textContent = '😵';
+    if (bossHP <= 0) document.getElementById('boss-figure').textContent = '💀';
+    const fb = document.getElementById('boss-feedback');
+    fb.classList.add('show', 'good');
+    fb.textContent = '⚔️ Touché ! −10 HP au boss';
+  } else {
+    const fb = document.getElementById('boss-feedback');
+    fb.classList.add('show', 'bad');
+    fb.textContent = '💥 Le boss contre-attaque ! Mauvaise réponse.';
+  }
+  bossIdx++;
+  setTimeout(loadBossQ, 1500);
+}
+</script>
+</body>
+</html>
